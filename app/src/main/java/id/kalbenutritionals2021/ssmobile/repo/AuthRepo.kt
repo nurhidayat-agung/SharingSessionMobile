@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.google.gson.Gson
 import id.kalbenutritionals2021.ssmobile.model.ReqCheckVersion
 import id.kalbenutritionals2021.ssmobile.model.general.ObjRequestData
+import id.kalbenutritionals2021.ssmobile.model.ReqLogin
 import id.kalbenutritionals2021.ssmobile.model.general.clsGlobalAPI
 import id.kalbenutritionals2021.ssmobile.network.AuthService
 import id.kalbenutritionals2021.ssmobile.util.Constants
@@ -44,5 +45,33 @@ class AuthRepo(private val sharedPref: SharedPref, private val authService : Aut
         val stringGson = gson.toJson(postReq);
 
         return authService.checkVersion(postReq)
+    }
+
+    fun login(username: String, password: String): Observable<clsGlobalAPI> {
+        val postReq = clsGlobalAPI().CreateBlankclsGlobalAPI()
+        postReq.txtProgramCode = Constants.ConfigTag.programCode
+        postReq.txtFunction = Constants.EndPointTag.login
+        val deviceInfo = sharedPref.getDeviceInfo()
+        val reqLogin = ReqLogin(
+            txtOutletCode = null,
+            txtTypeMobile = Constants.ConfigTag.txtTypeApp,
+            txtUserName = username,
+            txtPassword = password,
+            txtVersion = Constants.ConfigTag.txtVersion,
+            txtBranchCode = "",
+            intRole = "121",
+            txtOutletName = "",
+            txtDomain = Constants.AuthTag.domain,
+            txtImeiNumber = deviceInfo.getMeta()
+        )
+        val objRequestData = ObjRequestData(deviceInfo = deviceInfo, data = reqLogin)
+        postReq.objRequestData = objRequestData
+        postReq.objData = objRequestData
+        postReq.txtToken = sharedPref.getString(Constants.AuthTag.tagToken)
+        // return api.postData(postReq)
+
+        val gson = Gson()
+        val stringGson = gson.toJson(postReq);
+        return authService.loginMobile(postReq)
     }
 }

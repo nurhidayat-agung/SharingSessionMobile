@@ -40,21 +40,41 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener { view ->
             val username = edtUsername.text.toString()
             val pass = edtPass.text.toString()
-            if (username == "user" && pass == "pass")
-            {
-                val intent = Intent(this@LoginActivity, MenuActivity::class.java)
-                startActivity(intent)
-            }
-            else
-            {
-                Toast.makeText(this@LoginActivity,"login invalid",Toast.LENGTH_SHORT).show()
-            }
+
+            // offline
+//            if (username == "user" && pass == "pass")
+//            {
+//                val intent = Intent(this@LoginActivity, MenuActivity::class.java)
+//                startActivity(intent)
+//            }
+//            else
+//            {
+//                Toast.makeText(this@LoginActivity,"login invalid",Toast.LENGTH_SHORT).show()
+//            }
+
+
+            // online
+            vm.login(username, pass)
+
         }
 
         vm.resultCekversi.observe(this@LoginActivity, Observer {
             if (it.isNotBlank())
             {
                 Toast.makeText(this@LoginActivity, it.toString(),Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        vm.validLogin.observe(this@LoginActivity, Observer {
+            if (it ==true)
+            {
+                val intent = Intent(this@LoginActivity, MenuActivity::class.java)
+                intent.putExtra(Constants.ConfigTag.LoginMsg,vm.resultLogin)
+                startActivity(intent)
+            }
+            else
+            {
+                Toast.makeText(this@LoginActivity,"invalid login",Toast.LENGTH_SHORT).show()
             }
         })
 

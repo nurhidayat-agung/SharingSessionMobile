@@ -46,6 +46,7 @@ object Constants {
     }
 
     object ConfigTag {
+        const val LoginMsg = "LoginMsg"
         const val txtVersion = "Fennel 05.11.20"
         const val txtTypeApp = "FPRS Remastered"
         const val countTabAbsentHistoryData = 3
