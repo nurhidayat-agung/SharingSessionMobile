@@ -63,5 +63,5 @@ val vmModule = module {
 
 
 val repoModule = module {
-    single { AuthRepo() }
+    single { AuthRepo(get(),get()) }
 }

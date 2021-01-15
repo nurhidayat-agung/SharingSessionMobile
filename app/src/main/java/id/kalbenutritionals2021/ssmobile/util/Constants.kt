@@ -2,6 +2,17 @@ package id.kalbenutritionals2021.ssmobile.util
 
 object Constants {
 
+    object EndPointTag {
+        const val downloadData = "FPRS_SqlLiteGenerator"
+        const val logout = "FPRS_logOutMobile"
+        const val checkVersion = "FPRS_checkVersion"
+        const val cekRole = "FPRS_checkRole"
+        const val login = "FPRS_loginMobile"
+        const val pushData = "FPRS_pushDataSPGMobile"
+        const val getHistoryAbsent = "FPRS_getHistoryAbsent"
+        const val getCustomerHistoryAbsent = "FPRS_getCustomerHistoryAbsent"
+    }
+
     object AuthTag {
         const val client_grant_type = "client_credentials"
         const val loginSession = "loginSession"
@@ -35,6 +46,8 @@ object Constants {
     }
 
     object ConfigTag {
+        const val txtVersion = "FPRS Remastered"
+        const val txtTypeApp = "Fennel 05.11.20"
         const val countTabAbsentHistoryData = 3
         const val serviceTag = "serviceTag"
         const val unLoginUser = "ghqp"

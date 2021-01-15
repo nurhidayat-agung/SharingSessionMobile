@@ -60,3 +60,9 @@ fun getDateNow(): String {
 }
 
 inline fun <reified T> createApiService(retrofit: Retrofit): T = retrofit.create(T::class.java)
+
+@SuppressLint("SimpleDateFormat")
+fun getDateTimeNow(): String {
+    val sdf = SimpleDateFormat(Constants.ConfigTag.dateFormat3)
+    return sdf.format(Date())
+}
