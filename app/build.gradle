@@ -1,0 +1,136 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "id.kalbenutritionals2021.ssmobile"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+ext {
+    versions = [
+            appCompat           : '1.2.0',
+            constraint          : '2.0.4', // 2.0.0-alpha2
+            workManager         : '1.0.1', // 1.0.0-alpha12
+            koin                : '1.0.2',
+            lifecycle           : '2.2.0',
+            retrofit            : '2.5.0',
+            okhttp              : '3.10.0',
+            rxAndroid           : '2.1.0',
+            glide               : '4.11.0',
+            room                : '2.2.5',
+            analytics           : '17.5.0',
+            crashlytics         : '17.2.1',
+            shimmer             : '0.5.0',
+            ml_vision           : '21.0.0',
+            camerax             : '1.0.0-beta12',
+            camera2             : '1.0.0-alpha05',
+            camera2_view        : '1.0.0-alpha02',
+            gson                : '2.8.6',
+            coroutines          : '1.3.7',
+            serviceLocation     : '17.0.0',
+            SmartMaterialSpinner: '1.2.1',
+            searchablespinner   : '1.3.1',
+            viewpager2          : '1.0.0',
+            kotlinCore          : '1.3.2',
+            nav_version         : '2.3.1'
+    ]
+
+
+    kotlinDeps = [
+            core              : 'androidx.core:core-ktx:' + versions.kotlinCore,
+            stdlib            : 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:' + kotlin_version,
+            coroutines_core   : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:' + versions.coroutines,
+            coroutines_abdroid: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + versions.coroutines,
+    ]
+
+    androidxDeps = [
+            appCompat          : 'androidx.appcompat:appcompat:' + versions.appCompat,
+            material           : 'com.google.android.material:material:' + versions.appCompat,
+            constraintlayout   : 'androidx.constraintlayout:constraintlayout:' + versions.constraint,
+            workManager        : 'android.arch.work:work-runtime:' + versions.workManager,
+            viewpager2         : 'androidx.viewpager2:viewpager2:' + versions.viewpager2,
+            navigation_fragment: 'androidx.navigation:navigation-fragment-ktx:' + versions.nav_version,
+            navigation_ui      : 'androidx.navigation:navigation-ui-ktx:' + versions.nav_version,
+    ]
+
+    lifecycleDeps = [
+            lifecycle       : 'androidx.lifecycle:lifecycle-runtime-ktx:' + versions.lifecycle,
+            lifecycleExt    : 'androidx.lifecycle:lifecycle-extensions:' + versions.lifecycle,
+            lifecycleStreams: 'androidx.lifecycle:lifecycle-reactivestreams:' + versions.lifecycle
+    ]
+
+
+    koinDeps = [
+            koinCore     : 'org.koin:koin-core:' + versions.koin,
+            koinAndroid  : 'org.koin:koin-android:' + versions.koin,
+            koinViewModel: 'org.koin:koin-android-viewmodel:' + versions.koin
+    ]
+
+    networkDeps = [
+            retrofit      : 'com.squareup.retrofit2:retrofit:' + versions.retrofit,
+            gson          : 'com.squareup.retrofit2:converter-gson:' + versions.retrofit,
+            adapterRxJava2: 'com.squareup.retrofit2:adapter-rxjava2:' + versions.retrofit,
+            adapterScalar : 'com.squareup.retrofit2:converter-scalars:' + versions.retrofit,
+            okhttp        : 'com.squareup.okhttp3:okhttp:' + versions.okhttp,
+            logging       : 'com.squareup.okhttp3:logging-interceptor:' + versions.okhttp
+    ]
+
+    rxDeps = [
+            rxAndroid: 'io.reactivex.rxjava2:rxandroid:' + versions.rxAndroid
+    ]
+
+    otherDeps = [
+            searchablespinner   : 'com.toptoche.searchablespinner:searchablespinnerlibrary:' + versions.searchablespinner,
+            glide               : 'com.github.bumptech.glide:glide:' + versions.glide,
+            shimmer             : 'com.facebook.shimmer:shimmer:' + versions.shimmer,
+            gson                : 'com.google.code.gson:gson:' + versions.gson,
+            SmartMaterialSpinner: 'com.github.chivorns.androidx:smartmaterialspinner:' + versions.SmartMaterialSpinner
+    ]
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.github.jineshfrancs:CaptchaImageView:1.0'
+
+    implementation networkDeps.values()
+    implementation lifecycleDeps.values()
+    implementation koinDeps.values()
+    implementation rxDeps.values()
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+

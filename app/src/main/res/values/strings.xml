@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SSMobile</string>
+    <string name="hint_username">input username</string>
+    <string name="hint_password">input pasword</string>
+</resources>
