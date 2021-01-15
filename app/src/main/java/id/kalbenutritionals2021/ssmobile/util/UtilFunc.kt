@@ -66,3 +66,13 @@ fun getDateTimeNow(): String {
     val sdf = SimpleDateFormat(Constants.ConfigTag.dateFormat3)
     return sdf.format(Date())
 }
+
+
+fun absoluteToJson(obj: Any?): String {
+    val gson = Gson();
+    return if (obj is String) {
+        obj;
+    } else {
+        gson.toJson(obj).toString();
+    }
+}

@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 class AuthRepo(private val sharedPref: SharedPref, private val authService : AuthService)
 {
     @SuppressLint("SimpleDateFormat")
-    private fun checkVersion() : Observable<clsGlobalAPI> {
+    fun checkVersion() : Observable<clsGlobalAPI> {
         val postReq = clsGlobalAPI().CreateBlankclsGlobalAPI()
         postReq.txtProgramCode = Constants.ConfigTag.programCode
         postReq.txtFunction = Constants.EndPointTag.checkVersion
